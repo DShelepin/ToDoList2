@@ -1,3 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button {
+  @apply h-10 rounded-lg w-max px-4 bg-white  text-blue-600 font-medium hover:opacity-70;
+}
+
+.button-green {
+  @apply bg-green-500 text-white;
+}
+
+.button-red {
+    @apply bg-red-700  text-white;
+}
+
+
+.button-gray {
+  @apply bg-gray-500 text-white;
+}
+
+
+.checkboxWrapper input {
+  display: none;
+}
+
+.checkbox.red{
+    @apply bg-red-700;
+
+}
+.checkbox.yellow {
+    @apply bg-yellow-600;
+}
+.checkbox.blue{
+    @apply bg-blue-600;
+}
+.checkbox {
+  @apply bg-black;
+
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 5px;
+  position: relative;
+}
+
+.checkbox:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.checkboxWrapper input:checked + .checkbox::after {
+  background: inherit;
+}
+
