@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .button {
-  @apply h-10 rounded-lg w-max px-4 bg-white  text-blue-600 font-medium hover:opacity-70;
+  @apply block h-10 rounded-lg w-max px-6 bg-white  text-blue-600 font-medium hover:opacity-70;
 }
 
 .button-green {
