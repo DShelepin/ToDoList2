@@ -24,9 +24,9 @@
         <h2 class="text-lg font-bold text-blue-600 border-b-2 pb-2">
           Текущие задачи
         </h2>
-        <div class="py-4 flex flex-col gap-4">
+        <div class="py-4 flex flex-col">
           <!-- <div class="text-zinc-500">Нет задач</div> -->
-          <div class="flex">
+          <div class="task">
             <label class="checkboxWrapper">
               <input type="checkbox" />
               <div class="checkbox red"></div>
@@ -38,7 +38,7 @@
               </div>
             </div>
           </div>
-          <div class="flex">
+          <div class="task">
             <label class="checkboxWrapper">
               <input type="checkbox" />
               <div class="checkbox yellow"></div>
@@ -50,7 +50,7 @@
               </div>
             </div>
           </div>
-          <div class="flex">
+          <div class="task">
             <label class="checkboxWrapper">
               <input type="checkbox" />
               <div class="checkbox blue"></div>
@@ -62,7 +62,7 @@
               </div>
             </div>
           </div>
-          <div class="flex">
+          <div class="task">
             <label class="checkboxWrapper">
               <input type="checkbox" />
               <div class="checkbox"></div>
@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-      <!--  -->
+      <!-- модалка -->
       <!-- <div
         class="bg-black backdrop-blur-sm bg-opacity-30 fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center"
       >
@@ -135,12 +135,12 @@
             type="text"
             class="w-full h-10 rounded-lg px-4 border mb-2"
           />
-          <label for="description"  class="block mb-1">Описание</label>
+          <label for="description" class="block mb-1">Описание</label>
           <textarea
             id="description"
             class="w-full h-32 rounded-lg px-4 py-2 border max-h-56 mb-2"
           ></textarea>
-          <label for="priority" class="block mb-1" >Приоритет</label>
+          <label for="priority" class="block mb-1">Приоритет</label>
           <select id="priority" class="w-full h-10 rounded-lg px-4 border mb-5">
             <option value="Высокий">Высокий</option>
             <option value="Средний">Средний</option>
@@ -153,6 +153,7 @@
           </div>
         </div>
       </div> -->
+
       <!-- <div
         class="bg-black backdrop-blur-sm bg-opacity-30 fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center"
       >
@@ -163,6 +164,21 @@
           <div class="flex justify-between">
             <button class="button button-gray">Отменить</button>
             <button class="button button-red">Удалить</button>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="fixed right-0 bottom-0 left-0 flex justify-center pb-10 px-5 ">
+        <div
+          class="relative max-w-xs flex justify-center items-center bg-red-700 rounded-lg text-white py-3 pl-5 pr-10"
+        >
+          <span class="line-clamp-5">Что-то случилось</span>
+          <div class="absolute top-3 right-3 w-6 h-6 cursor-pointer hover:opacity-70">
+            <svg height="100%" viewBox="0 0 24 24" width="100%">
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                fill="#fff"
+              ></path>
+            </svg>
           </div>
         </div>
       </div> -->
