@@ -12,31 +12,48 @@
       <h1 class="text-center text-2xl font-bold text-blue-600 mb-12">
         Мои задачи
       </h1>
-      <!-- <h2 class="text-center text-lg mb-10">Регистрация</h2>
-      <div class="text-center font-semibold">Письмо с подтверждением отправлено на почту</div> -->
-      <label for="email" class="block mb-1 ml-2">Email</label>
-      <input
-        id="email"
-        type="email"
-        class="w-full h-10 rounded-lg px-4 border mb-4"
-      />
-      <label for="password" class="block mb-1 ml-2">Пароль</label>
-      <input
-        id="password"
-        type="password"
-        class="w-full h-10 rounded-lg px-2 border mb-2"
-      />
-      <label for="confirmPassword" class="block mb-1 ml-2">Повторите пароль</label>
-      <input
-        id="confirmPassword"
-        type="password"
-        class="w-full h-10 rounded-lg px-2 border mb-8"
-      />
-      <button class="button button-green mx-auto mb-2">Зарегистрироваться</button>
-      <div class="text-center text-zinc-500">
-        Уже есть аккаунт?
-        <a href="./login.html" class="underline hover:text-blue-600">Войти</a>
+      <h2 class="text-center text-lg mb-10">Регистрация</h2>
+      <div id="regirterContainer">
+        <form id="regirterForm">
+          <label for="email" class="block mb-1 ml-2">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="w-full h-10 rounded-lg px-4 border mb-4"
+            required
+          />
+          <label for="password" class="block mb-1 ml-2">Пароль</label>
+          <input
+            id="password"
+            type="password"
+            class="w-full h-10 rounded-lg px-2 border mb-2"
+            pattern="^.{6,}"
+            required
+            title="Должно быть не менее 6 символов"
+          />
+          <label for="confirmPassword" class="block mb-1 ml-2"
+            >Повторите пароль</label
+          >
+          <input
+            id="confirmPassword"
+            type="password"
+            class="w-full h-10 rounded-lg px-2 border mb-8"
+            pattern="^.{6,}"
+            required
+            title="Должно быть не менее 6 символов"
+          />
+          <button id="registerButton" class="button button-green mx-auto mb-2">
+            Зарегистрироваться
+          </button>
+          <div class="text-center text-zinc-500">
+            Уже есть аккаунт?
+            <a href="./login.html" class="underline hover:text-blue-600"
+              >Войти</a
+            >
+          </div>
+        </form>
       </div>
     </div>
+    <script type="module" src="./registration.js"></script>
   </body>
 </html>
