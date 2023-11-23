@@ -24,9 +24,9 @@
         <h2 class="text-lg font-bold text-blue-600 border-b-2 pb-2">
           Текущие задачи
         </h2>
-        <div class="py-4 flex flex-col">
+        <div class="py-4 flex flex-col" id="tasksContainer">
           <!-- <div class="text-zinc-500">Нет задач</div> -->
-          <div class="task">
+          <!-- <div class="task">
             <label class="checkboxWrapper">
               <input type="checkbox" />
               <div class="checkbox red"></div>
@@ -37,51 +37,16 @@
                 Сходить в магазин через дорогу
               </div>
             </div>
-          </div>
-          <div class="task">
-            <label class="checkboxWrapper">
-              <input type="checkbox" />
-              <div class="checkbox yellow"></div>
-            </label>
-            <div class="ml-2 cursor-pointer hover:opacity-70 w-3/4">
-              <div class="mb-1 line-clamp-1">Купить хлеб</div>
-              <div class="text-sm text-zinc-500 line-clamp-3">
-                Сходить в магазин через дорогу
-              </div>
-            </div>
-          </div>
-          <div class="task">
-            <label class="checkboxWrapper">
-              <input type="checkbox" />
-              <div class="checkbox blue"></div>
-            </label>
-            <div class="ml-2 cursor-pointer hover:opacity-70 w-3/4">
-              <div class="mb-1 line-clamp-1">Купить хлеб</div>
-              <div class="text-sm text-zinc-500 line-clamp-3">
-                Сходить в магазин через дорогу
-              </div>
-            </div>
-          </div>
-          <div class="task">
-            <label class="checkboxWrapper">
-              <input type="checkbox" />
-              <div class="checkbox"></div>
-            </label>
-            <div class="ml-2 cursor-pointer hover:opacity-70 w-3/4">
-              <div class="mb-1 line-clamp-1">Купить хлеб</div>
-              <div class="text-sm text-zinc-500 line-clamp-3">
-                Сходить в магазин через дорогу
-              </div>
-            </div>
-          </div>
+          </div> -->
+        
         </div>
       </div>
       <!-- Архив -->
       <div class="border border-blue-800 rounded-lg p-3">
         <h2 class="text-lg font-bold text-blue-600 border-b-2 pb-2">Архив</h2>
-        <div class="py-4 flex flex-col gap-4">
-          <!-- <div class="text-zinc-500">Нет задач</div> -->
-          <div class="flex">
+        <div class="py-4 flex flex-col gap-4" >
+          <div class="text-zinc-500">Нет задач</div>
+          <!-- <div class="flex">
             <label class="checkboxWrapper">
               <input type="checkbox" />
               <div class="checkbox red"></div>
@@ -99,61 +64,11 @@
             <div class="ml-auto flex items-center">
               <button class="button button-red">Удалить</button>
             </div>
-          </div>
-          <div class="flex">
-            <label class="checkboxWrapper">
-              <input type="checkbox" />
-              <div class="checkbox yellow"></div>
-            </label>
-            <div class="ml-2 w-3/4">
-              <div class="mb-1 line-clamp-1 line-through decoration-yellow-600">
-                Купить хлеб
-              </div>
-              <div
-                class="text-sm text-zinc-500 line-clamp-3 line-through decoration-yellow-600"
-              >
-                Сходить в магазин через дорогу
-              </div>
-            </div>
-            <div class="ml-auto flex items-center">
-              <button class="button button-red">Удалить</button>
-            </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- модалка -->
-      <!-- <div
-        class="bg-black backdrop-blur-sm bg-opacity-30 fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center"
-      >
-        <div class="w-full max-w-md bg-white p-8 rounded-lg max-h-full">
-          <h2 class="text-lg font-bold text-blue-600 border-b-2 pb-2 mb-4">
-            Новая задача
-          </h2>
-          <label for="title" class="block mb-1">Название</label>
-          <input
-            id="title"
-            type="text"
-            class="w-full h-10 rounded-lg px-4 border mb-2"
-          />
-          <label for="description" class="block mb-1">Описание</label>
-          <textarea
-            id="description"
-            class="w-full h-32 rounded-lg px-4 py-2 border max-h-56 mb-2"
-          ></textarea>
-          <label for="priority" class="block mb-1">Приоритет</label>
-          <select id="priority" class="w-full h-10 rounded-lg px-4 border mb-5">
-            <option value="Высокий">Высокий</option>
-            <option value="Средний">Средний</option>
-            <option value="Низкий">Низкий</option>
-            <option value="">Без приоритета</option>
-          </select>
-          <div class="flex justify-between">
-            <button class="button button-gray">Отменить</button>
-            <button class="button button-green">Создать</button>
-          </div>
-        </div>
-      </div> -->
-
+      
       <!-- <div
         class="bg-black backdrop-blur-sm bg-opacity-30 fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center"
       >

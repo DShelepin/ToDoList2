@@ -76,7 +76,8 @@
   margin-bottom: 16px;
 }
 
-.task:last-child {
+.task:last-child,
+.task.openTask:last-child {
   margin-bottom: 0;
 }
 
@@ -99,12 +100,16 @@
 @keyframes openTask {
   0% {
     max-height: 0;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
   }
   100% {
     max-height: 100px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
   }
+}
+
+.task:last-child {
+  margin-bottom: 0;
 }
 
 .smoothOpen {
