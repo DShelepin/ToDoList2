@@ -11,10 +11,19 @@ export function createTaskModalHtml(mode = modes.create) {
 
   return `
     <div
-        class="smoothOpen bg-black backdrop-blur-sm bg-opacity-30 fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center"
+        class="smoothOpen bg-black backdrop-blur-sm bg-opacity-30 fixed top-0 right-0 bottom-0 left-0 flex justify-center items-center "
         id="taskModalContainer"
       >
-        <form id="taskModal" class="w-full max-w-md bg-white p-8 rounded-lg max-h-full">
+      
+     
+        <form id="taskModal" class="w-full max-w-md bg-white p-8 rounded-lg max-h-full relative">
+        ${
+          mode === modes.edit
+            ? `<div class="absolute top-0 right-0 bottom-0 left-0 bg-white rounded-lg flex justify-center items-center" id="taskLoader">
+        <div class="custom-loader"></div>
+      </div>`
+            : ''
+        }
           <h2 class="text-lg font-bold text-blue-600 border-b-2 pb-2 mb-4">
            ${title}
           </h2>
@@ -48,20 +57,22 @@ export function createTaskModalHtml(mode = modes.create) {
 }
 
 export function createTaskHtml(task, isNew = false) {
- const classByPriority = {
-  [priorities.high]:'red',
-  [priorities.medium]: 'yellow',
-  [priorities.low]: 'blue',
-  [priorities.empty]: '',
- }
+  const classByPriority = {
+    [priorities.high]: 'red',
+    [priorities.medium]: 'yellow',
+    [priorities.low]: 'blue',
+    [priorities.empty]: '',
+  };
 
   return `
-    <div class="task ${isNew ? 'openTask' : ''}">
-    <label class="checkboxWrapper">
-      <input type="checkbox" />
+    <div class="task ${isNew ? 'openTask' : ''}" data-taskContainerId="${task.id}">
+    <label class="checkboxWrapper" data-taskid="${task.id}" data-taskCheckbox>
+      <input type="checkbox"  />
       <div class="checkbox ${classByPriority[task.priority]}"></div>
     </label>
-    <div class="ml-2 cursor-pointer hover:opacity-70 w-3/4">
+    <div class="ml-2 cursor-pointer hover:opacity-70 w-3/4" data-taskid="${
+      task.id
+    }" data-taskContent>
       <div class="mb-1 line-clamp-1">${task.title}</div>
       <div class="text-sm text-zinc-500 line-clamp-3">
        ${task.description}

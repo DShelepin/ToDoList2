@@ -25,15 +25,23 @@ export function renderTasks(tasks) {
 export function renderNewTask(task) {
   const tasksContainer = document.querySelector('#tasksContainer');
 
-  const tasks = tasksContainer.querySelectorAll('.task')
+  const tasks = tasksContainer.querySelectorAll('.task');
 
-  const newTask = createTaskHtml(task, true)
+  const newTask = createTaskHtml(task, true);
 
-  if(tasks.length) {
+  if (tasks.length) {
     tasksContainer.insertAdjacentHTML('beforeend', newTask);
-  }else{
-    tasksContainer.innerHTML = newTask
+  } else {
+    tasksContainer.innerHTML = newTask;
   }
+}
 
-  
+export function renderUpdatedTask(task) {
+  const taskContainer = document.querySelector(
+    `[data-taskContainerId="${task.id}"]`
+  );
+
+  taskContainer.insertAdjacentHTML('afterend', createTaskHtml(task));
+
+  taskContainer.remove();
 }

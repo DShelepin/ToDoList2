@@ -1,9 +1,9 @@
-import { createTask } from '../api/task';
+import { createTask, updateTask } from '../api/task';
 import { modes } from './constans';
 import { createTaskModalHtml } from './htmlTemplates';
-import { renderNewTask } from './renders';
+import { renderNewTask, renderUpdatedTask } from './renders';
 
-export function openTaskModal(mode = modes.create) {
+export function openTaskModal(mode = modes.create, taskId) {
   const taskModalHtml = createTaskModalHtml(mode);
 
   document.body.insertAdjacentHTML('beforeend', taskModalHtml);
@@ -69,11 +69,21 @@ export function openTaskModal(mode = modes.create) {
       closeTaskModalButton.setAttribute('disabled', 'true');
       submitTaskModalFormButton.setAttribute('disabled', 'true');
 
-      const newTask = await createTask(taskData);
+      if (mode === modes.create) {
+        const newTask = await createTask(taskData);
 
-      await CloseTaskModal();
+        await CloseTaskModal();
 
-      renderNewTask(newTask);
+        renderNewTask(newTask);
+      } else {
+        const updatedTask = await updateTask({
+          id: taskId,
+          ...taskData,
+        });
+        await CloseTaskModal();
+
+        renderUpdatedTask(updatedTask);
+      }
     } catch (error) {
       console.log('error', error);
 

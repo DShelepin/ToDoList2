@@ -26,6 +26,10 @@
   @apply bg-gray-500 text-white;
 }
 
+
+.checkboxWrapper{
+  @apply h-max;
+}
 .checkboxWrapper input {
   display: none;
 }
