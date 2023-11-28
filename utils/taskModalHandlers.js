@@ -3,6 +3,37 @@ import { modes } from './constans';
 import { createTaskModalHtml } from './htmlTemplates';
 import { renderNewTask, renderUpdatedTask } from './renders';
 
+export function onTaskModalContainerClick(event) {
+  if (event.target.id === 'taskModalContainer') {
+    CloseTaskModal();
+  }
+}
+
+export function CloseTaskModal() {
+  const taskModalContainer = document.querySelector('#taskModalContainer');
+  const closeTaskModalButton = document.querySelector('#closeTaskModalButton');
+
+  return new Promise((res) => {
+    taskModalContainer.classList.add('smoothClose');
+
+    const onAnimationEnd = () => {
+      closeTaskModalButton.removeEventListener('click', CloseTaskModal);
+
+      taskModalContainer.removeEventListener('animationend', onAnimationEnd);
+      taskModalContainer.removeEventListener(
+        'click',
+        onTaskModalContainerClick
+      );
+
+      taskModalContainer.remove();
+
+      res();
+    };
+
+    taskModalContainer.addEventListener('animationend', onAnimationEnd);
+  });
+}
+
 export function openTaskModal(mode = modes.create, taskId) {
   const taskModalHtml = createTaskModalHtml(mode);
 
@@ -14,34 +45,6 @@ export function openTaskModal(mode = modes.create, taskId) {
   const submitTaskModalFormButton = document.querySelector(
     '#submitTaskModalFormButton'
   );
-
-  const onTaskModalContainerClick = (event) => {
-    if (event.target.id === 'taskModalContainer') {
-      CloseTaskModal();
-    }
-  };
-
-  const CloseTaskModal = () => {
-    return new Promise((res) => {
-      taskModalContainer.classList.add('smoothClose');
-
-      const onAnimationEnd = () => {
-        closeTaskModalButton.removeEventListener('click', CloseTaskModal);
-
-        taskModalContainer.removeEventListener('animationend', onAnimationEnd);
-        taskModalContainer.removeEventListener(
-          'click',
-          onTaskModalContainerClick
-        );
-
-        taskModalContainer.remove();
-
-        res();
-      };
-
-      taskModalContainer.addEventListener('animationend', onAnimationEnd);
-    });
-  };
 
   closeTaskModalButton.addEventListener('click', CloseTaskModal);
 

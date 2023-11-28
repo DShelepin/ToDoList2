@@ -1,10 +1,27 @@
+import { statuses } from '../utils/constans';
 import { supabase } from './config';
 
-export async function getTasks() {
-  let { data, error } = await supabase.from('tasks').select('*');
+export async function getActiveTasks() {
+  let { data, error } = await supabase
+    .from('tasks')
+    .select('*')
+    .eq('status', statuses.active);
 
   if (error) {
-    throw Error(error?.message || 'Что то случилось при получении задач');
+    throw Error(error?.message || 'Что то случилось при получении текущих задач');
+  }
+
+  return data;
+}
+
+export async function getArchiveTasks() {
+  let { data, error } = await supabase
+    .from('tasks')
+    .select('*')
+    .eq('status', statuses.archive);
+
+  if (error) {
+    throw Error(error?.message || 'Что то случилось при получении архивных задач');
   }
 
   return data;

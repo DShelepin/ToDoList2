@@ -26,8 +26,7 @@
   @apply bg-gray-500 text-white;
 }
 
-
-.checkboxWrapper{
+.checkboxWrapper {
   @apply h-max;
 }
 .checkboxWrapper input {
@@ -83,6 +82,10 @@
 .task:last-child,
 .task.openTask:last-child {
   margin-bottom: 0;
+}
+
+.task.disabled {
+  @apply pointer-events-none opacity-50;
 }
 
 @keyframes closeTask {

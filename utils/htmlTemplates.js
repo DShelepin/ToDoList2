@@ -65,7 +65,9 @@ export function createTaskHtml(task, isNew = false) {
   };
 
   return `
-    <div class="task ${isNew ? 'openTask' : ''}" data-taskContainerId="${task.id}">
+    <div class="task ${isNew ? 'openTask' : ''}" data-taskContainerId="${
+    task.id
+  }">
     <label class="checkboxWrapper" data-taskid="${task.id}" data-taskCheckbox>
       <input type="checkbox"  />
       <div class="checkbox ${classByPriority[task.priority]}"></div>
@@ -78,6 +80,50 @@ export function createTaskHtml(task, isNew = false) {
        ${task.description}
       </div>
     </div>
+    </div>
+`;
+}
+
+export function createArchiveTaskHtml(archiveTask, isNew = false) {
+  const checkboxClassByPriority = {
+    [priorities.high]: 'red',
+    [priorities.medium]: 'yellow',
+    [priorities.low]: 'blue',
+    [priorities.empty]: '',
+  };
+
+  const contentClassByPriority = {
+    [priorities.high]: 'decoration-red-700',
+    [priorities.medium]: 'decoration-yellow-700',
+    [priorities.low]: 'decoration-blue-700',
+    [priorities.empty]: 'decoration-black',
+  };
+
+  return `
+    <div class="task ${isNew ? 'openTask' : ''}" data-archiveTasksContainerId="${
+    archiveTask.id
+  }">
+    <label class="checkboxWrapper" data-atchiveTaskid="${
+      archiveTask.id
+    }" data-taskCheckbox>
+      <input type="checkbox" checked />
+      <div class="checkbox ${
+        checkboxClassByPriority[archiveTask.priority]
+      }"></div>
+    </label>
+    <div class="ml-2 w-3/4">
+      <div class="mb-1 line-clamp-1 line-through ${
+        contentClassByPriority[archiveTask.priority]
+      }">${archiveTask.title}</div>
+      <div class="text-sm text-zinc-500 line-clamp-3 ${
+        contentClassByPriority[archiveTask.priority]
+      }">
+       ${archiveTask.description}
+      </div>
+    </div>
+    <div class="ml-auto flex items-center">
+        <button class="button button-red">Удалить</button>
+      </div>
     </div>
 `;
 }
