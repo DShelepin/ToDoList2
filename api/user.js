@@ -26,6 +26,14 @@ export async function login(email, password) {
   return data.user;
 }
 
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    throw Error(error?.message || 'Что-то случилось при выходе');
+  }
+}
+
 export async function getUser() {
   const {
     data: { user },

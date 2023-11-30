@@ -1,5 +1,6 @@
 import { getActiveTasks, getArchiveTasks } from './api/task';
 import { getUser } from './api/user';
+import { onLogoutButtonClick } from './utils/logoutHandler';
 import {
   renderActiveTasks,
   renderActiveTasksLoader,
@@ -50,12 +51,13 @@ async function start() {
 
     await getAndRenderArchiveTasks();
 
+    const logoutButton = document.querySelector('#logout-button');
     const addTaskButton = document.querySelector('#add-task-button');
     const activeTasksContainer = document.querySelector('#tasks-container');
     const archiveTasksContainer = document.querySelector('#archive-tasks-container');
 
-
-    addTaskButton.addEventListener('click', (event) => openTaskModal());
+    logoutButton.addEventListener('click',onLogoutButtonClick );
+    addTaskButton.addEventListener('click', () => openTaskModal());
     activeTasksContainer.addEventListener('click', onActiveTasksContainerCkick);
     archiveTasksContainer.addEventListener('click', onArchiveTasksContainerClick);
   } catch (error) {
