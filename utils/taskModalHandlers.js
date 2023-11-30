@@ -2,36 +2,26 @@ import { createTask, updateTask } from '../api/task';
 import { modes } from './constans';
 import { createTaskModalHtml } from './htmlTemplates';
 import { renderNewTask, renderUpdatedTask } from './renders';
+import { removeElementAfterAnimationPromise } from './utils';
 
 export function onTaskModalContainerClick(event) {
-  if (event.target.id === 'taskModalContainer') {
+  if (event.target.id === 'task-modal-container') {
     CloseTaskModal();
   }
 }
 
 export function CloseTaskModal() {
-  const taskModalContainer = document.querySelector('#taskModalContainer');
-  const closeTaskModalButton = document.querySelector('#closeTaskModalButton');
+  const taskModalContainer = document.querySelector('#task-modal-container');
+  const closeTaskModalButton = document.querySelector(
+    '#close-task-modal-button'
+  );
 
-  return new Promise((res) => {
-    taskModalContainer.classList.add('smoothClose');
+  taskModalContainer.classList.add('smoothClose');
 
-    const onAnimationEnd = () => {
-      closeTaskModalButton.removeEventListener('click', CloseTaskModal);
-
-      taskModalContainer.removeEventListener('animationend', onAnimationEnd);
-      taskModalContainer.removeEventListener(
-        'click',
-        onTaskModalContainerClick
-      );
-
-      taskModalContainer.remove();
-
-      res();
-    };
-
-    taskModalContainer.addEventListener('animationend', onAnimationEnd);
-  });
+  return removeElementAfterAnimationPromise(taskModalContainer, () => {
+    closeTaskModalButton.removeEventListener('click', CloseTaskModal);
+    taskModalContainer.removeEventListener('click', onTaskModalContainerClick)
+});
 }
 
 export function openTaskModal(mode = modes.create, taskId) {
@@ -39,11 +29,13 @@ export function openTaskModal(mode = modes.create, taskId) {
 
   document.body.insertAdjacentHTML('beforeend', taskModalHtml);
 
-  const taskModalContainer = document.querySelector('#taskModalContainer');
-  const taskModal = document.querySelector('#taskModal');
-  const closeTaskModalButton = document.querySelector('#closeTaskModalButton');
+  const taskModalContainer = document.querySelector('#task-modal-container');
+  const taskModal = document.querySelector('#task-modal');
+  const closeTaskModalButton = document.querySelector(
+    '#close-task-modal-button'
+  );
   const submitTaskModalFormButton = document.querySelector(
-    '#submitTaskModalFormButton'
+    '#submit-task-modal-form-button'
   );
 
   closeTaskModalButton.addEventListener('click', CloseTaskModal);
@@ -74,10 +66,11 @@ export function openTaskModal(mode = modes.create, taskId) {
 
       if (mode === modes.create) {
         const newTask = await createTask(taskData);
+        
 
         await CloseTaskModal();
 
-        renderNewTask(newTask);
+        renderNewTask(newTask)
       } else {
         const updatedTask = await updateTask({
           id: taskId,

@@ -8,7 +8,7 @@ import {
   renderUser,
 } from './utils/renders';
 import { openTaskModal } from './utils/taskModalHandlers';
-import { onActiveTasksContainerCkick, onArchiveTasksContainerCkick } from './utils/tasksContainerHendler';
+import { onActiveTasksContainerCkick, onArchiveTasksContainerClick } from './utils/tasksContainerHendler';
 
 function removeUserLoader() {
   const loader = document.querySelector('#loader').remove();
@@ -50,14 +50,14 @@ async function start() {
 
     await getAndRenderArchiveTasks();
 
-    const addTaskButton = document.querySelector('#addTaskButton');
-    const activeTasksContainer = document.querySelector('#tasksContainer');
-    const archiveTasksContainer = document.querySelector('#archiveTasksContainer');
+    const addTaskButton = document.querySelector('#add-task-button');
+    const activeTasksContainer = document.querySelector('#tasks-container');
+    const archiveTasksContainer = document.querySelector('#archive-tasks-container');
 
 
     addTaskButton.addEventListener('click', (event) => openTaskModal());
     activeTasksContainer.addEventListener('click', onActiveTasksContainerCkick);
-    archiveTasksContainer.addEventListener('click', onArchiveTasksContainerCkick);
+    archiveTasksContainer.addEventListener('click', onArchiveTasksContainerClick);
   } catch (error) {
     console.log('error', error);
   }

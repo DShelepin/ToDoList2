@@ -8,7 +8,9 @@ export async function getActiveTasks() {
     .eq('status', statuses.active);
 
   if (error) {
-    throw Error(error?.message || 'Что то случилось при получении текущих задач');
+    throw Error(
+      error?.message || 'Что то случилось при получении текущих задач'
+    );
   }
 
   return data;
@@ -21,7 +23,9 @@ export async function getArchiveTasks() {
     .eq('status', statuses.archive);
 
   if (error) {
-    throw Error(error?.message || 'Что то случилось при получении архивных задач');
+    throw Error(
+      error?.message || 'Что то случилось при получении архивных задач'
+    );
   }
 
   return data;

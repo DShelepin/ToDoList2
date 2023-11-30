@@ -6,19 +6,19 @@ export function renderUser(user) {
 }
 
 export function renderActiveTasksLoader() {
-  const tasksContainer = document.querySelector('#tasksContainer');
+  const tasksContainer = document.querySelector('#tasks-container');
   tasksContainer.innerHTML = `<div class="custom-loader"></div>`;
 }
 
 export function renderArchiveTasksLoader() {
   const archiveTasksContainer = document.querySelector(
-    '#archiveTasksContainer'
+    '#archive-tasks-container'
   );
   archiveTasksContainer.innerHTML = `<div class="custom-loader"></div>`;
 }
 
 export function renderActiveTasks(tasks) {
-  const tasksContainer = document.querySelector('#tasksContainer');
+  const tasksContainer = document.querySelector('#tasks-container');
 
   if (tasks.length) {
     const tasksHtml = tasks.map((task) => createTaskHtml(task)).join('');
@@ -31,7 +31,7 @@ export function renderActiveTasks(tasks) {
 
 export function renderArchiveTasks(archiveTasks) {
   const archiveTasksContainer = document.querySelector(
-    '#archiveTasksContainer'
+    '#archive-tasks-container'
   );
 
   if (archiveTasks.length) {
@@ -46,26 +46,32 @@ export function renderArchiveTasks(archiveTasks) {
 }
 
 export function renderNewTask(task) {
-  const tasksContainer = document.querySelector('#tasksContainer');
+  const activeTasksContainer = document.querySelector('#tasks-container');
+  const archiveTasksContainer = document.querySelector(
+    '#archive-tasks-container'
+  );
 
-  const tasks = tasksContainer.querySelectorAll('.task');
+  const activeTasks = activeTasksContainer.querySelectorAll('.task');
 
   const newTask = createTaskHtml(task, true);
 
-  if (tasks.length) {
-    tasksContainer.insertAdjacentHTML('beforeend', newTask);
+  if (activeTasks.length) {
+    activeTasksContainer.insertAdjacentHTML('beforeend', newTask);
   } else {
-    tasksContainer.innerHTML = newTask;
+    activeTasksContainer.innerHTML = newTask;
   }
+
+  makeTextIfNoTaskInContainer(archiveTasksContainer)
 }
 
 export function renderNewArchiveTask(archiveTask) {
-  const activeTasksContainer = document.querySelector('#tasksContainer');
-  const archiveTasksContainer = document.querySelector('#archiveTasksContainer');
+  const activeTasksContainer = document.querySelector('#tasks-container');
+  const archiveTasksContainer = document.querySelector(
+    '#archive-tasks-container'
+  );
 
   const archiveTasks = archiveTasksContainer.querySelectorAll('.task');
 
-  const activeTasks = activeTasksContainer.querySelectorAll('.task');
   const newArchiveTask = createArchiveTaskHtml(archiveTask, true);
 
   if (archiveTasks.length) {
@@ -74,17 +80,22 @@ export function renderNewArchiveTask(archiveTask) {
     archiveTasksContainer.innerHTML = newArchiveTask;
   }
 
-  if(!activeTasks.length) {
-    activeTasksContainer.innerHTML = `<div class="text-zinc-500">Нет задач</div>`
-  }
+  makeTextIfNoTaskInContainer(activeTasksContainer)
 }
 
 export function renderUpdatedTask(task) {
   const taskContainer = document.querySelector(
-    `[data-taskContainerId="${task.id}"]`
+    `[data-task-container-id="${task.id}"]`
   );
 
   taskContainer.insertAdjacentHTML('afterend', createTaskHtml(task));
 
   taskContainer.remove();
 }
+ export function makeTextIfNoTaskInContainer (container) {
+  const tasks = container.querySelectorAll('.task');
+  if(!tasks.length){
+    container.innerHTML = `<div class="text-zinc-500">Нет задач</div>`;
+
+  }
+ }
