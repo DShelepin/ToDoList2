@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 .button {
-  @apply block h-10 rounded-lg w-max px-6 bg-white  text-blue-600 font-medium hover:opacity-70;
+  @apply block h-10 rounded-lg w-max px-6 bg-white text-blue-600 font-medium hover:opacity-70;
+}
+
+.button-green {
+  @apply bg-green-500 text-white;
+}
+
+.button-red {
+  @apply bg-red-700 text-white;
+}
+
+.button-gray {
+  @apply bg-gray-500 text-white;
 }
 
 .button:disabled {
@@ -14,21 +26,10 @@
   @apply border-red-700;
 }
 
-.button-green {
-  @apply bg-green-500 text-white;
-}
-
-.button-red {
-  @apply bg-red-700  text-white;
-}
-
-.button-gray {
-  @apply bg-gray-500 text-white;
-}
-
 .checkboxWrapper {
   @apply h-max;
 }
+
 .checkboxWrapper input {
   display: none;
 }
@@ -36,12 +37,15 @@
 .checkbox.red {
   @apply bg-red-700;
 }
+
 .checkbox.yellow {
   @apply bg-yellow-600;
 }
+
 .checkbox.blue {
   @apply bg-blue-600;
 }
+
 .checkbox {
   @apply bg-black;
 
@@ -65,52 +69,17 @@
   background: #fff;
 }
 
-.checkboxWrapper input:checked + .checkbox::after {
+.checkboxWrapper input:checked + .checkbox:after {
   background: inherit;
 }
-
-.closeTask {
-  overflow: hidden;
-  animation: closeTask 0.5s ease forwards;
-}
-
-/* .closeTask:last-child {
-  animation: closeTaskLast 0.5s ease forwards;
-}
-
-
-@keyframes closeTask {
-  0% {
-    max-height: 100px;
-    padding-bottom: 0px;
-  }
-  100% {
-    max-height: 0;
-   padding-bottom: 0;
-  }
-} */
 
 .task {
   display: flex;
   padding-bottom: 16px;
 }
 
-.task:last-child,
-.task.openTask:last-child {
-  padding-bottom: 0;
-}
-
 .task.disabled {
   @apply pointer-events-none opacity-50;
-}
-
-@keyframes closeTask {
-  0% {
-    max-height: 100px;
-  }
-  100% {
-    max-height: 0;
-  }
 }
 
 .openTask {
@@ -118,85 +87,88 @@
   animation: openTask 0.5s ease forwards;
 }
 
-/* .openTask:last-child {
-  animation: openTaskLast 0.5s ease forwards;
-}
-
-@keyframes openTaskLast {
-  0% {
-    max-height: 0;
-    padding-bottom: 0;
-    
-  }
-  100% {
-    max-height: 100px;
-    padding-bottom: 0;
-  }
-} */
-
-@keyframes openTask {
-  0% {
-    max-height: 0;
-    
-  }
-  100% {
-    max-height: 100px;
-  }
-}
-
-.task:last-child {
-  margin-bottom: 0;
+.closeTask {
+  overflow: hidden;
+  animation: closeTask 0.5s ease forwards;
 }
 
 .smoothOpen {
   animation: smoothOpen 0.5s ease forwards;
 }
 
-@keyframes smoothOpen {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .smoothClose {
   animation: smoothClose 0.5s ease forwards;
-}
-
-@keyframes smoothClose {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
 .openError {
   animation: openError 0.5s ease forwards;
 }
 
-@keyframes openError {
+.closeError {
+  animation: closeError 0.5s ease forwards;
+}
+
+@keyframes smoothOpen {
   0% {
-    transform: translateX(calc(100% + 40px));
+    opacity: 0;
   }
+
   100% {
-    transform: translateX(0);
+    opacity: 1;
   }
 }
 
-.closeError {
-  animation: closeError 0.5s ease forwards;
+@keyframes smoothClose {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes openTask {
+  0% {
+    max-height: 0;
+    padding-bottom: 0;
+  }
+
+  100% {
+    max-height: 100px;
+    padding-bottom: 16px;
+  }
+}
+
+@keyframes closeTask {
+  0% {
+    max-height: 100px;
+    padding-bottom: 16px;
+  }
+
+  100% {
+    max-height: 0;
+    padding-bottom: 0;
+  }
+}
+
+@keyframes openError {
+  0% {
+    transform: translateX(calc(100% + 20px));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes closeError {
   0% {
     transform: translateX(0);
   }
+
   100% {
-    transform: translateX(calc(100% + 40px) );
+    transform: translateX(calc(100% + 20px));
   }
 }
 

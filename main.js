@@ -3,6 +3,7 @@ import { getUser } from './api/user';
 import { errorHandler } from './utils/errorHandler';
 import { onLogoutButtonClick } from './utils/logoutHandler';
 import {
+  makeTextIfErrorInContainer,
   renderActiveTasks,
   renderActiveTasksLoader,
   renderArchiveTasks,
@@ -10,7 +11,10 @@ import {
   renderUser,
 } from './utils/renders';
 import { openTaskModal } from './utils/taskModalHandlers';
-import { onActiveTasksContainerCkick, onArchiveTasksContainerClick } from './utils/tasksContainerHendler';
+import {
+  onActiveTasksContainerCkick,
+  onArchiveTasksContainerClick,
+} from './utils/tasksContainerHendler';
 
 function removeUserLoader() {
   const loader = document.querySelector('#loader').remove();
@@ -21,28 +25,28 @@ function removeUserLoader() {
 }
 
 async function getAndRenderActiveTasks() {
+  try {
+    renderActiveTasksLoader();
 
-  try{
-  renderActiveTasksLoader();
+    const activeTasks = await getActiveTasks();
 
-  const activeTasks = await getActiveTasks();
-
-  renderActiveTasks(activeTasks);
-  }catch(error) {
-    errorHandler(error)
+    renderActiveTasks(activeTasks);
+  } catch (error) {
+    makeTextIfErrorInContainer(document.querySelector('#tasks-container'));
+    errorHandler(error);
   }
 }
 
-
 async function getAndRenderArchiveTasks() {
-  try{
-  renderArchiveTasksLoader();
+  try {
+    renderArchiveTasksLoader();
 
-  const archiveTasks = await getArchiveTasks();
+    const archiveTasks = await getArchiveTasks();
 
-  renderArchiveTasks(archiveTasks);
-  }catch(error) {
-    errorHandler(error)
+    renderArchiveTasks(archiveTasks);
+  } catch (error) {
+    makeTextIfErrorInContainer(document.querySelector('#tasks-container'));
+    errorHandler(error);
   }
 }
 
@@ -58,23 +62,24 @@ async function start() {
 
     removeUserLoader();
 
-    await getAndRenderActiveTasks();
-
-    await getAndRenderArchiveTasks();
-
-    
+    Promise.all([getAndRenderActiveTasks(), getAndRenderArchiveTasks()]);
 
     const logoutButton = document.querySelector('#logout-button');
     const addTaskButton = document.querySelector('#add-task-button');
     const activeTasksContainer = document.querySelector('#tasks-container');
-    const archiveTasksContainer = document.querySelector('#archive-tasks-container');
+    const archiveTasksContainer = document.querySelector(
+      '#archive-tasks-container'
+    );
 
-    logoutButton.addEventListener('click',onLogoutButtonClick );
+    logoutButton.addEventListener('click', onLogoutButtonClick);
     addTaskButton.addEventListener('click', () => openTaskModal());
     activeTasksContainer.addEventListener('click', onActiveTasksContainerCkick);
-    archiveTasksContainer.addEventListener('click', onArchiveTasksContainerClick);
+    archiveTasksContainer.addEventListener(
+      'click',
+      onArchiveTasksContainerClick
+    );
   } catch (error) {
-    errorHandler(error)
+    errorHandler(error);
   }
 }
 

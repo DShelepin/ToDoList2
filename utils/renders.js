@@ -2,11 +2,13 @@ import { createTaskHtml, createArchiveTaskHtml } from './htmlTemplates';
 
 export function renderUser(user) {
   const userContainer = document.querySelector('#user');
+
   userContainer.innerHTML = user.email;
 }
 
 export function renderActiveTasksLoader() {
   const tasksContainer = document.querySelector('#tasks-container');
+
   tasksContainer.innerHTML = `<div class="custom-loader"></div>`;
 }
 
@@ -61,7 +63,7 @@ export function renderNewTask(task) {
     activeTasksContainer.innerHTML = newTask;
   }
 
-  makeTextIfNoTaskInContainer(archiveTasksContainer)
+  makeTextIfNoTaskInContainer(archiveTasksContainer);
 }
 
 export function renderNewArchiveTask(archiveTask) {
@@ -80,7 +82,7 @@ export function renderNewArchiveTask(archiveTask) {
     archiveTasksContainer.innerHTML = newArchiveTask;
   }
 
-  makeTextIfNoTaskInContainer(activeTasksContainer)
+  makeTextIfNoTaskInContainer(activeTasksContainer);
 }
 
 export function renderUpdatedTask(task) {
@@ -92,10 +94,17 @@ export function renderUpdatedTask(task) {
 
   taskContainer.remove();
 }
- export function makeTextIfNoTaskInContainer (container) {
+export function makeTextIfNoTaskInContainer(container) {
   const tasks = container.querySelectorAll('.task');
-  if(!tasks.length){
+  if (!tasks.length) {
     container.innerHTML = `<div class="text-zinc-500">Нет задач</div>`;
-
   }
- }
+}
+
+export function makeTextIfErrorInContainer(container) {
+  const tasks = container.querySelectorAll('.task');
+
+  if (!tasks.length) {
+    container.innerHTML = `<div class="text-zinc-500">Ошибка при получении задач</div>`;
+  }
+}
