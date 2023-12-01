@@ -1,4 +1,5 @@
 import { login } from '../api/user';
+import { errorHandler } from '../utils/errorHandler';
 
 async function onSubmit(event) {
   event.preventDefault();
@@ -28,7 +29,7 @@ await login(emailValue, passwordValue);
     password.removeAttribute('disabled');
     loginButton.removeAttribute('disabled');
 
-    console.log('error', error);
+    errorHandler(error)
   }
 }
 
@@ -37,7 +38,7 @@ async function start() {
     const loginForm = document.querySelector('#loginForm');
     loginForm.addEventListener('submit', onSubmit);
   } catch (error) {
-    console.log('error', error);
+    errorHandler(error)
   }
 }
 

@@ -1,4 +1,5 @@
 import { logout } from '../api/user';
+import { errorHandler } from './errorHandler';
 import { createModalHtml } from './htmlTemplates';
 import { removeElementAfterAnimationPromise } from './utils';
 

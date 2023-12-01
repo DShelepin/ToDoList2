@@ -148,3 +148,32 @@ export function createModalHtml({ title, submitButtonText }) {
 </div>
   `;
 }
+
+export function createErrorContainerHtml(errorMassage) {
+return `
+  <div class="fixed right-0 bottom-0 left-0 pb-10 px-5 flex flex-col gap-3 max-h-screen overflow-x-hidden" data-error-container>
+   ${createErrorHtml(errorMassage)}
+  </div>
+`
+}
+
+export function createErrorHtml(errorMassage) {
+  return `
+   <div
+    class="relative w-72 bg-red-700 rounded-lg text-white py-3 pl-8 pr-10 ml-auto openError"
+    data-error
+  >
+    <span class="line-clamp-5">${errorMassage}</span>
+    <div class="absolute top-3 right-3 w-6 h-6 cursor-pointer hover:opacity-70"
+    data-close-error-button
+    >
+      <svg height="100%" viewBox="0 0 24 24" width="100%">
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          fill="#fff"
+        ></path>
+      </svg>
+    </div>
+  </div>
+  `
+}

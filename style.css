@@ -74,14 +74,30 @@
   animation: closeTask 0.5s ease forwards;
 }
 
+/* .closeTask:last-child {
+  animation: closeTaskLast 0.5s ease forwards;
+}
+
+
+@keyframes closeTask {
+  0% {
+    max-height: 100px;
+    padding-bottom: 0px;
+  }
+  100% {
+    max-height: 0;
+   padding-bottom: 0;
+  }
+} */
+
 .task {
   display: flex;
-  margin-bottom: 16px;
+  padding-bottom: 16px;
 }
 
 .task:last-child,
 .task.openTask:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .task.disabled {
@@ -102,14 +118,29 @@
   animation: openTask 0.5s ease forwards;
 }
 
-@keyframes openTask {
+/* .openTask:last-child {
+  animation: openTaskLast 0.5s ease forwards;
+}
+
+@keyframes openTaskLast {
   0% {
     max-height: 0;
-    /* margin-bottom: 0; */
+    padding-bottom: 0;
+    
   }
   100% {
     max-height: 100px;
-    /* margin-bottom: 16px; */
+    padding-bottom: 0;
+  }
+} */
+
+@keyframes openTask {
+  0% {
+    max-height: 0;
+    
+  }
+  100% {
+    max-height: 100px;
   }
 }
 
@@ -149,10 +180,10 @@
 
 @keyframes openError {
   0% {
-    transform: translateY(100%);
+    transform: translateX(calc(100% + 40px));
   }
   100% {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -162,10 +193,10 @@
 
 @keyframes closeError {
   0% {
-    transform: translateY(0);
+    transform: translateX(0);
   }
   100% {
-    transform: translateY(100%);
+    transform: translateX(calc(100% + 40px) );
   }
 }
 
